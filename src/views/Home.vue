@@ -1,17 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { usePokemonsStore } from '../store/pokemonsStore.js';
+import { computed } from "vue";
+import { usePokemonsStore } from "../store/pokemonsStore.js";
 import { useRouter } from "vue-router"; 
 
 const pokemonsStore = usePokemonsStore();
 const router = useRouter();
-const loading = ref(pokemonsStore.loading);
-
-watch(() => pokemonsStore.loading,
-  (newLoading) => {
-    loading.value = newLoading;
-  }
-);
+const loading = computed(() => pokemonsStore.loading);
 
 const getPokemonsInfo = async () => {
   await pokemonsStore.getPokemons();
@@ -22,7 +16,7 @@ const getPokemonsInfo = async () => {
 <template>
   <div class="home" v-if="!loading">
     <div>
-      <img class="home__image" src="/Pikachu_Welcome.svg" alt="Image of Pikachu greeting" />
+      <img class="home__image" src="/Pikachu_Welcome.svg" alt="Image of Pikachu greeting" loading="lazy"/>
     </div>
     <h1 class="home__title">Welcome to Pokédex</h1>
     <p class="home__description">The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.</p>

@@ -11,7 +11,8 @@
 .main {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   height: 100vh;
+  width: 100vw;
 }
 </style>
