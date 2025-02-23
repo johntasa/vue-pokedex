@@ -4,6 +4,7 @@ import { usePokemonsStore } from "../store/pokemonsStore.js";
 import { useRouter } from "vue-router"; 
 
 const pokemonsStore = usePokemonsStore();
+
 const router = useRouter();
 const loading = computed(() => pokemonsStore.loading);
 
