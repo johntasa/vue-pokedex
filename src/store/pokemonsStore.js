@@ -4,11 +4,12 @@ import { getPokemons as pokemonsProvider } from "../services/pokemons";
 export const usePokemonsStore = defineStore("pokemons", {
   state: () => ({
     pokemons: [],
+    pokemonDetails: null,
+    favoritePokemons: {},
     nextPage: null,
     previousPage: null,
     loading: false,
     error: null,
-    pokemonDetails: null,
   }),
   actions: {
     async getPokemons() {
@@ -32,6 +33,12 @@ export const usePokemonsStore = defineStore("pokemons", {
       } catch (err) {
         this.error = err.message || "Failed to fetch Pokémons";
       }
+    },
+    setFavoritePokemon(pokemonName) {
+      if (!this.favoritePokemons) {
+        this.favoritePokemons = {};
+      }
+      this.favoritePokemons[pokemonName] = !this.favoritePokemons[pokemonName];
     },
   },
 });

@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { usePokemonsStore } from "../store/pokemonsStore.js";
 import { useRouter } from "vue-router"; 
+import Loader from "../components/Loader.vue";
 
 const pokemonsStore = usePokemonsStore();
 
@@ -23,10 +24,7 @@ const getPokemonsInfo = async () => {
     <p class="home__description">The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.</p>
     <button class="home__button" @click="getPokemonsInfo" type="button">Get started</button>
   </div>
-  <div class="loader" v-else>
-    <img class="loader__pikachu" src="https://i.gifer.com/2iiJ.gif" alt="Loader Pikachu running">
-    <img class="loader__pokeball" src="/Loader.svg" alt="Loader pokeball icon">
-  </div>
+  <Loader v-else />  
 </template>
 
 <style scoped lang="scss">
@@ -37,16 +35,6 @@ const getPokemonsInfo = async () => {
   justify-content: center;
   gap: 1rem;
   width: 75vh;
-  /* > div {
-    border: #333333 solid 2px;
-    background-color: #F22539;
-    border-radius: 50%;
-    width: 264px;
-    height: 264px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
 
   &__image {
     width: 325px;
@@ -88,32 +76,6 @@ const getPokemonsInfo = async () => {
     &:hover {
       background-color: #C00E20;
     }
-  }
-}
-
-.loader {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  &__pokeball {
-    width: 150px;
-    height: 150px;
-    animation: spin 2s linear infinite;
-  }
-  &__pikachu {
-    width: 100px;
-    height: 80px;
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
   }
 }
 </style>

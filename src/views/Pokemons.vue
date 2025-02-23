@@ -3,13 +3,13 @@ import { ref, onMounted, computed } from "vue";
 import { usePokemonsStore } from "../store/pokemonsStore.js";
 import PokeModal from "../components/PokeModal.vue";
 import Filters from "../components/Filters.vue";
+import FavButton from "../components/FavButton.vue";
 import { capitalizeWord } from "../utils/utils.js";
 
 const pokemonsStore = usePokemonsStore();
 
 const pokemonsList = ref([]);
 const searchInput = ref("");
-const selectedPokemons = ref({});
 
 const displayModalDetails = ref(false);
 
@@ -39,11 +39,6 @@ const openPokemonDetails = async (pokemonName) => {
   await pokemonsStore.getPokemonDetails(pokemonName);
   displayModalDetails.value = true;
 };
-
-const setFavorite = (event, pokemonName) => {
-  event.stopPropagation();
-  selectedPokemons.value[pokemonName] = !selectedPokemons.value[pokemonName];
-};
 </script>
 
 <template>
@@ -53,6 +48,7 @@ const setFavorite = (event, pokemonName) => {
         class="pokemon-list__search-input"
         type="text"
         placeholder="Search"
+        name="search"
         v-model="searchInput"
       />
       <ul>
@@ -63,32 +59,21 @@ const setFavorite = (event, pokemonName) => {
         >
           <div class="pokemon-list__pokemon">
             <p>{{ capitalizeWord(pokemon.name) }}</p>
-            <button
-              class="pokemon-list__pokemon--favorite-button"
-              @click="setFavorite($event, pokemon.name)"
-            >
-              <img
-                :class="{ 'favorite-button__icon--active': selectedPokemons[pokemon.name] }"
-                class="favorite-button__icon"
-                :src="selectedPokemons[pokemon.name] ? '/Active.svg' : '/Disabled.svg'"
-                alt="Icon of a star"
-              />
-            </button>
+            <FavButton
+              :pokemon="pokemon"
+            />
           </div>
         </li>
       </ul>
-      <Filters
-        :selectedPokemons="selectedPokemons"
+      <!-- <Filters
         @filter-all="pokemonsList = filteredPokemons"
-        @filter-favorites="pokemonsList = filteredPokemons.filter(pokemon => selectedPokemons[pokemon.name] )"
-      />
+        @filter-favorites="pokemonsList = filteredPokemons.filter(pokemon => favoritePokemons[pokemon.name] )"
+      /> -->
     </div>
     <PokeModal
       v-if="displayModalDetails"
       :pokeDetails="pokeDetails"
-      :selectedPokemons="selectedPokemons"
       @close="displayModalDetails = false"
-      @set-favorite="setFavorite"
     />
   </div>
 </template>
@@ -138,22 +123,6 @@ const setFavorite = (event, pokemonName) => {
     margin-bottom: 0.5rem;
     &:hover {
       background-color: #BFBFBF;
-    }
-    &--favorite-button {
-      background-color: transparent;
-      border: none;
-      .favorite-button__icon {
-        cursor: pointer;
-        &:active {
-          transform: rotate(0.5turn);
-        }
-        
-        &--active {
-          &:active {
-            transform: skew(30deg, 20deg) scale(0.8);
-          }
-        }
-      }
     }
   }
 }

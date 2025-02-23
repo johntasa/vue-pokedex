@@ -1,14 +1,10 @@
 <script setup>
-import { defineProps, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { capitalizeWord } from '../utils/utils';
+import FavButton from './FavButton.vue';
 
 const props = defineProps({
   pokeDetails: {
-    type: Object,
-    default: () => {},
-    required: true,
-  },
-  selectedPokemons: {
     type: Object,
     default: () => {},
     required: true,
@@ -51,17 +47,9 @@ const copyToClipboardInfo = async () => {
       </div>
       <div class="modal-content__actions">
         <button class="modal-content__actions--share" @click="copyToClipboardInfo" type="button">Share to my friends</button>
-        <button
-          class="modal-content__actions--favorite-button"
-          @click="$emit('set-favorite', $event, pokeDetails.name)"
-        >
-          <img
-            :class="{ 'favorite-button__icon--active': selectedPokemons[pokeDetails.name] }"
-            class="favorite-button__icon"
-            :src="selectedPokemons[pokeDetails.name] ? '/Active.svg' : '/Disabled.svg'"
-            alt="Icon of a star"
-          />
-        </button>
+        <FavButton
+          :pokemon="pokeDetails"
+        />
       </div>
     </div>
   </div>
@@ -136,23 +124,6 @@ const copyToClipboardInfo = async () => {
           border: none;
           padding: 11px 20px;
           cursor: pointer;
-        }
-
-        &--favorite-button {
-          background-color: transparent;
-          border: none;
-          .favorite-button__icon {
-            cursor: pointer;
-            &:active {
-              transform: rotate(0.5turn);
-            }
-
-            &--active {
-              &:active {
-                transform: skew(30deg, 20deg) scale(0.8);
-              }
-            }
-          }
         }
       }
     }
