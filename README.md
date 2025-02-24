@@ -1,5 +1,24 @@
-# Vue 3 + Vite
+# Pokédex
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Tecnologías Utilizadas
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+- **Vite (Build):** Decidí usar Vite porque es una herramienta de build rápida y fácil de configurar/usar en este proyecto que es pequeño.
+- **Vue 3 (Composition API):** Vue 3 ofrece mejor rendimiento y la API tiene una forma más flexible de organizar la lógica de cada componente. 
+- **Pinia (Store):** Store recomendado para Vue 3. 
+- **Vue Router:** Aplicación creada como SPA.
+- **Jest (Unit Tests)** 
+
+### Versiones
+
+- **node:** 22.13.1
+- **npm:** 10.9.2
+
+## Instalación y ejecución
+
+```bash
+npm install
+npm run dev
+```
+## Consideraciones
+
+La arquitectura utilizada sigue el patrón Model-View-ViewModel (MVVM) y como buenas prácticas de código se siguieron las siguientes: KISS, DRY, SOLID, YAGNI, Abstracción, Responsabilidad Única y Pruebas Unitarias

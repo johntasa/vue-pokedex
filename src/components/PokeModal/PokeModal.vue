@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { capitalizeWord } from '../utils/utils';
-import FavButton from './FavButton.vue';
+import { capitalizeWord, copyToClipboard } from '@/utils/utils.js';
+import FavButton from '@/components/FavButton.vue';
 import SharedModal from './SharedModal.vue';
 
 const props = defineProps({
@@ -20,10 +20,9 @@ const types = computed(() => {
 });
 
 const copyToClipboardInfo = async () => {
-  textToCopy.value =
-    `Name: ${capitalizeWord(props.pokeDetails.name)}, Height: ${props.pokeDetails.height}, Weight: ${props.pokeDetails.weight}, Types: ${types.value.join(', ')}`;
+  textToCopy.value = `Name: ${capitalizeWord(props.pokeDetails.name)}\nHeight: ${props.pokeDetails.height}\nWeight: ${props.pokeDetails.weight}\nTypes: ${types.value.join(', ')}`;
   try {
-    await navigator.clipboard.writeText(textToCopy.value);
+    await copyToClipboard(textToCopy.value);
     copied.value = true;
   } catch (error) {
     console.error("Error copying to clipboard:", error);
@@ -114,6 +113,7 @@ const copyToClipboardInfo = async () => {
       border: none;
       padding: 0;
       cursor: pointer;
+
       img {
         width: 24px;
         height: 24px;
@@ -124,6 +124,7 @@ const copyToClipboardInfo = async () => {
       padding: 0 30px;
       font-family: 'Roboto', sans-serif;
       font-size: 18px;
+
       p {
         border-bottom: 1px solid #E8E8E8;
         padding: 1rem 0;
@@ -137,6 +138,7 @@ const copyToClipboardInfo = async () => {
       justify-content: space-between;
       align-items: center;
       padding: 10px 30px 20px 30px;
+      
       &--share {
         height: 44px;
         background-color: #F22539;

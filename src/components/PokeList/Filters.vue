@@ -1,5 +1,5 @@
 <script setup>
-import { usePokemonsStore } from "../store/pokemonsStore.js";
+import { usePokemonsStore } from "@/store/pokemonsStore.js";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
@@ -105,23 +105,4 @@ const filterFavorites = () => {
       }
     }
   }
-
-  @media (max-width: 768px) {
-  .filter {
-    justify-content: space-between;
-    &__all,
-    &__favorites {
-      width: 150px;
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .filter {
-    &__all,
-    &__favorites {
-      width: 150px;
-    }
-  }
-}
 </style>

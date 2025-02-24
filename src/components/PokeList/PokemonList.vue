@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from "vue";
-import { usePokemonsStore } from "../store/pokemonsStore.js";
+import { usePokemonsStore } from "@/store/pokemonsStore.js";
 import { storeToRefs } from "pinia";
 import Pokemon from "./Pokemon.vue";
 

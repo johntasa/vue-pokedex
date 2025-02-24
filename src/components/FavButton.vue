@@ -1,5 +1,5 @@
 <script setup>
-import { usePokemonsStore } from "../store/pokemonsStore.js";
+import { usePokemonsStore } from "@/store/pokemonsStore.js";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 

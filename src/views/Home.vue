@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { usePokemonsStore } from "../store/pokemonsStore.js";
 import { useRouter } from "vue-router"; 
-import Loader from "../components/Loader.vue";
+import Loader from "@/components/Loader.vue";
 
 const pokemonsStore = usePokemonsStore();
 

@@ -1,6 +1,6 @@
 <script setup>
-import FavButton from "./FavButton.vue";
-import { capitalizeWord } from "../utils/utils.js";
+import FavButton from "../FavButton.vue";
+import { capitalizeWord } from "@/utils/utils.js";
 
 const props = defineProps({
   pokemon: {
@@ -9,7 +9,6 @@ const props = defineProps({
     required: true,
   },
 });
-
 </script>
 
 <template>
@@ -29,6 +28,7 @@ const props = defineProps({
   &:active {
     transform: scale(0.98);
   }
+
   &__info {
     display: flex;
     justify-content: space-between;

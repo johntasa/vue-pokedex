@@ -1,10 +1,10 @@
 <script setup>
 import { ref, computed } from "vue";
-import PokeModal from "../components/PokeModal.vue";
-import Filters from "../components/Filters.vue";
-import NoResults from "../components/NoResults.vue";
-import PokemonList from "../components/PokemonList.vue";
-import { usePokemonsStore } from "../store/pokemonsStore.js";
+import PokeModal from "@/components/PokeModal/PokeModal.vue";
+import Filters from "@/components/PokeList/Filters.vue";
+import NoResults from "@/components/PokeList/NoResults.vue";
+import PokemonList from "@/components/PokeList/PokemonList.vue";
+import { usePokemonsStore } from "@/store/pokemonsStore.js";
 
 const displayModalDetails = ref(false);
 const pokemonsStore = usePokemonsStore();

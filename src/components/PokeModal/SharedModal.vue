@@ -1,5 +1,4 @@
 <script setup>
-
 const props = defineProps({
   title: {
     type: String,
@@ -12,7 +11,6 @@ const props = defineProps({
     required: true,
   },
 });
-
 </script>
 
 <template>
