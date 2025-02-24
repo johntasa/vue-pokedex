@@ -5,7 +5,8 @@ export const usePokemonsStore = defineStore("pokemons", {
   state: () => ({
     pokemons: [],
     pokemonDetails: null,
-    favoritePokemons: {},
+    favoritePokemons: [],
+    searchedPokemons: [],
     nextPage: null,
     previousPage: null,
     loading: false,
@@ -18,10 +19,11 @@ export const usePokemonsStore = defineStore("pokemons", {
       try {
         const pokemonsInfo = await pokemonsProvider();
         this.pokemons = pokemonsInfo.results;
+        this.searchedPokemons = pokemonsInfo.results;
         this.nextPage = pokemonsInfo.next;
         this.previousPage = pokemonsInfo.previous;
       } catch (err) {
-        this.error = err.message || "Failed to fetch Pokémons";
+        this.error = err.message || "Failed to fetch Pokemons";
       } finally {
         this.loading = false;
       }
@@ -31,14 +33,22 @@ export const usePokemonsStore = defineStore("pokemons", {
         const response = await pokemonsProvider(`/${pokemonName}`);
         this.pokemonDetails = response;
       } catch (err) {
-        this.error = err.message || "Failed to fetch Pokémons";
+        this.error = err.message || "Failed to fetch Pokemon Details";
       }
     },
-    setFavoritePokemon(pokemonName) {
-      if (!this.favoritePokemons) {
-        this.favoritePokemons = {};
+    setFavoritePokemon(pokemon) {
+      if (this.favoritePokemons.includes(pokemon)) {
+        this.favoritePokemons = this.favoritePokemons.filter(
+          (favPokemon) => favPokemon !== pokemon
+        );
+        return;
       }
-      this.favoritePokemons[pokemonName] = !this.favoritePokemons[pokemonName];
+      this.favoritePokemons.push(pokemon);
+    },
+    searchPokemons(query) {
+      this.searchedPokemons = this.pokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(query.toLowerCase())
+      );
     },
   },
 });

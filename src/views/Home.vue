@@ -21,8 +21,8 @@ const getPokemonsInfo = async () => {
       <img class="home__image" src="/Pikachu_Welcome.svg" alt="Image of Pikachu greeting" loading="lazy"/>
     </div>
     <h1 class="home__title">Welcome to Pokédex</h1>
-    <p class="home__description">The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.</p>
-    <button class="home__button" @click="getPokemonsInfo" type="button">Get started</button>
+    <p class="home__description">The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokéhmon world.</p>
+    <button class="home__button" @click="getPokemonsInfo" type="button" aria-label="Get started">Get started</button>
   </div>
   <Loader v-else />  
 </template>
@@ -34,11 +34,15 @@ const getPokemonsInfo = async () => {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 75vh;
+  width: 100%;
+  height: 100vh;
+  max-width: 580px;
+  font-family: 'Roboto', sans-serif;
 
   &__image {
-    width: 325px;
-    height: 288px;
+    width: 100%;
+    max-width: 325px;
+    height: auto;
     border: #333333 solid 2px;
     background-color: #F22539;
     border-radius: 50%;
@@ -48,34 +52,40 @@ const getPokemonsInfo = async () => {
   }
 
   &__title {
-    font-family: Lato;
     font-weight: 700;
     font-size: 26px;
     color: #353535;
+    text-align: center;
   }
 
   &__description {
-    font-family: Lato;
     font-weight: 500;
     font-size: 18px;
-    line-height: 27px;
-    letter-spacing: 0%;
+    line-height: 1.5;
     text-align: center;
     color: #5E5E5E;
   }
 
   &__button {
-    width: 131px;
-    height: 44px;
+    width: auto;
+    min-width: 131px;
+    padding: 0.75rem 1.5rem;
     border-radius: 60px;
     border: none;
-    padding: 11px 20px;
     background-color: #F22539;
     color: #FFFFFF;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
     &:hover {
       background-color: #C00E20;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    width: 95%;
   }
 }
 </style>
