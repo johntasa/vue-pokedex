@@ -1,16 +1,16 @@
 <script setup>
 import { computed } from "vue";
-import { usePokemonsStore } from "../store/pokemonsStore.js";
+import { usePokeStore } from "../store/pokeStore.js";
 import { useRouter } from "vue-router"; 
-import Loader from "@/components/Loader.vue";
+import PokeLoader from "@/components/PokeLoader.vue";
 
-const pokemonsStore = usePokemonsStore();
+const pokeStore = usePokeStore();
 
 const router = useRouter();
-const loading = computed(() => pokemonsStore.loading);
+const loading = computed(() => pokeStore.loading);
 
 const getPokemonsInfo = async () => {
-  await pokemonsStore.getPokemons();
+  await pokeStore.getPokemons();
   router.push({ name: "Pokemons" });
 }
 </script>
@@ -24,7 +24,7 @@ const getPokemonsInfo = async () => {
     <p class="home__description">The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokéhmon world.</p>
     <button class="home__button" @click="getPokemonsInfo" type="button" aria-label="Get started">Get started</button>
   </div>
-  <Loader v-else />  
+  <PokeLoader v-else />  
 </template>
 
 <style scoped lang="scss">

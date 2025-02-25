@@ -1,10 +1,10 @@
 <script setup>
-import { usePokemonsStore } from "@/store/pokemonsStore.js";
+import { usePokeStore } from "@/store/pokeStore.js";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
-const pokemonsStore = usePokemonsStore();
-const { favoritePokemons } = storeToRefs(pokemonsStore);
+const pokeStore = usePokeStore();
+const { favoritePokemons } = storeToRefs(pokeStore);
 
 const props = defineProps({
   pokemon: {
@@ -18,7 +18,7 @@ const isFavorite = computed(() => favoritePokemons.value.find((fav) => fav.name 
 
 const setFavorite = (event, pokemon) => {
   event.stopPropagation();
-  pokemonsStore.setFavoritePokemon(pokemon);
+  pokeStore.setFavoritePokemon(pokemon);
 };
 </script>
 

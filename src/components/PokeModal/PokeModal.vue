@@ -30,7 +30,7 @@ const copyToClipboardInfo = async () => {
     setTimeout(() => {
       copied.value = false;
       textToCopy.value = '';
-    }, 3000);
+    }, 2000);
   }
 };
 </script>
@@ -57,8 +57,8 @@ const copyToClipboardInfo = async () => {
         </button>
         <FavButton :pokemon="pokeDetails" />
       </div>
-      <SharedModal v-if="copied" title="Copied to clipboard!" :description="textToCopy"/>
     </div>
+    <SharedModal v-if="copied" title="Copied to clipboard!" :description="textToCopy"/>
   </div>
 </template>
 

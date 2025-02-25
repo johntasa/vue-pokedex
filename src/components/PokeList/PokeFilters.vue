@@ -1,19 +1,19 @@
 <script setup>
-import { usePokemonsStore } from "@/store/pokemonsStore.js";
+import { usePokeStore } from "@/store/pokeStore.js";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
-const pokemonsStore = usePokemonsStore();
+const pokeStore = usePokeStore();
 const isFilteredFavorites = ref(false);
-const { favoritePokemons } = storeToRefs(pokemonsStore);
+const { favoritePokemons } = storeToRefs(pokeStore);
 
 const filterAll = () => {
-  pokemonsStore.searchedPokemons = pokemonsStore.pokemons;
+  pokeStore.searchedPokemons = pokeStore.pokemons;
   isFilteredFavorites.value = false;
 };
 
 const filterFavorites = () => {
-  pokemonsStore.searchedPokemons = pokemonsStore.favoritePokemons;
+  pokeStore.searchedPokemons = pokeStore.favoritePokemons;
   isFilteredFavorites.value = true;
 };
 </script>

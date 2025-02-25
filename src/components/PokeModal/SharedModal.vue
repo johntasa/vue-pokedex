@@ -15,8 +15,7 @@ const props = defineProps({
 
 <template>
   <div class="modal-confirmation">
-    <h4>{{ title }}</h4>
-    <br>
+    <h3>{{ title }}</h3>
     <span>{{ description }}</span>
     <img src="/Pikachu_Welcome.svg" alt="Image of Pikachu greeting" loading="lazy"/>
   </div>
@@ -25,7 +24,7 @@ const props = defineProps({
 <style scoped lang="scss">
 .modal-confirmation {
   position: absolute;
-  bottom: 10px;
+  bottom: 50%px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #BFBFBF;

@@ -1,16 +1,16 @@
 <script setup>
 import { ref, watch } from "vue";
-import { usePokemonsStore } from "@/store/pokemonsStore.js";
+import { usePokeStore } from "@/store/pokeStore.js";
 import { storeToRefs } from "pinia";
-import Pokemon from "./Pokemon.vue";
+import PokeItem from "./PokeItem.vue";
 
-const pokemonsStore = usePokemonsStore();
+const pokeStore = usePokeStore();
 const emit = defineEmits(["open-modal"]);
 const searchInput = ref("");
-const { searchedPokemons } = storeToRefs(pokemonsStore);
+const { searchedPokemons } = storeToRefs(pokeStore);
 
 const openPokemonDetails = async (pokemonName) => {
-  await pokemonsStore.getPokemonDetails(pokemonName);
+  await pokeStore.getPokemonDetails(pokemonName);
   emit("open-modal");
 };
 
@@ -20,7 +20,7 @@ const getPokemonID = (url) => {
 };
 
 watch(searchInput, (value) => {
-  pokemonsStore.searchPokemons(value);
+  pokeStore.searchPokemons(value);
 });
 </script>
 
@@ -35,7 +35,12 @@ watch(searchInput, (value) => {
       aria-label="Search Pokemon"
     />
     <ul class="pokemon-list__items">
-      <Pokemon v-for="pokemon in searchedPokemons" :key="getPokemonID(pokemon.url)" :pokemon="pokemon" @click="openPokemonDetails(pokemon.name)" />
+      <PokeItem
+        v-for="pokemon in searchedPokemons"
+        :key="getPokemonID(pokemon.url)"
+        :pokemon="pokemon"
+        @click="openPokemonDetails(pokemon.name)"
+      />
     </ul>
   </div>
 </template>
