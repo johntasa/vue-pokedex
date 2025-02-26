@@ -1,21 +1,10 @@
 <script setup>
 import { usePokeStore } from "@/store/pokeStore.js";
-import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
 const pokeStore = usePokeStore();
-const isFilteredFavorites = ref(false);
-const { favoritePokemons } = storeToRefs(pokeStore);
-
-const filterAll = () => {
-  pokeStore.searchedPokemons = pokeStore.pokemons;
-  isFilteredFavorites.value = false;
-};
-
-const filterFavorites = () => {
-  pokeStore.searchedPokemons = pokeStore.favoritePokemons;
-  isFilteredFavorites.value = true;
-};
+const { isFilteredFavorites, favoritePokemons } = storeToRefs(pokeStore);
+const toggleFilters = (filter) => pokeStore.toggleFilters(filter);
 </script>
 
 <template>
@@ -23,7 +12,7 @@ const filterFavorites = () => {
     <button
       :class="{ 'filter__all--active': !isFilteredFavorites }"
       class="filter__all"
-      @click="filterAll"
+      @click="toggleFilters('all')"
       aria-label="Filter all pokemons"
     >
       <img src="/Burger.svg" alt="Burger icon"> All
@@ -36,7 +25,7 @@ const filterFavorites = () => {
       class="filter__favorites"
       aria-label="Filter favorite pokemons"
       :disabled="favoritePokemons.length === 0"
-      @click="filterFavorites"
+      @click="toggleFilters('favorites')"
     > 
       <img src="/Star.svg" alt="Star icon">Favorites
     </button>

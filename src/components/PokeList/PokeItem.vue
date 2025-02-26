@@ -2,7 +2,7 @@
 import FavButton from "../FavButton.vue";
 import { capitalizeWord } from "@/utils/utils.js";
 
-const props = defineProps({
+defineProps({
   pokemon: {
     type: Object,
     default: () => {},

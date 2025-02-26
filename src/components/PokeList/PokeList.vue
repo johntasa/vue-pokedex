@@ -14,11 +14,6 @@ const openPokemonDetails = async (pokemonName) => {
   emit("open-modal");
 };
 
-const getPokemonID = (url) => {
-  const urlParts = url.split("/");
-  return urlParts[urlParts.length - 2];
-};
-
 watch(searchInput, (value) => {
   pokeStore.searchPokemons(value);
 });
@@ -37,7 +32,7 @@ watch(searchInput, (value) => {
     <ul class="pokemon-list__items">
       <PokeItem
         v-for="pokemon in searchedPokemons"
-        :key="getPokemonID(pokemon.url)"
+        :key="pokemon.name"
         :pokemon="pokemon"
         @click="openPokemonDetails(pokemon.name)"
       />

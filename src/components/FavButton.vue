@@ -1,10 +1,8 @@
 <script setup>
 import { usePokeStore } from "@/store/pokeStore.js";
 import { computed } from "vue";
-import { storeToRefs } from "pinia";
 
 const pokeStore = usePokeStore();
-const { favoritePokemons } = storeToRefs(pokeStore);
 
 const props = defineProps({
   pokemon: {
@@ -14,18 +12,18 @@ const props = defineProps({
   },
 });
 
-const isFavorite = computed(() => favoritePokemons.value.find((fav) => fav.name === props.pokemon.name));
+const isFavorite = computed(() => pokeStore.isFavorite(props.pokemon.name));
 
-const setFavorite = (event, pokemon) => {
+const toggleFavorite = (event) => {
   event.stopPropagation();
-  pokeStore.setFavoritePokemon(pokemon);
+  pokeStore.toggleFavoritePokemon(props.pokemon);
 };
 </script>
 
 <template>
   <button
     class="favorite-button"
-    @click="setFavorite($event, pokemon)"
+    @click="toggleFavorite($event, pokemon)"
     type="button"
     :aria-label="isFavorite ? 'Remove from favorites' : 'Add to favorites'"
   >
