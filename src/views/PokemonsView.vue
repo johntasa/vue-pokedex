@@ -52,6 +52,7 @@ const pokeDetails = computed (() => {
 @media (max-width: 480px) {
   .pokemons-container {
     padding: 0.25rem;
+    gap: 0.5rem;
   }
 }
 </style>

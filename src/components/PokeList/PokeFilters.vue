@@ -35,13 +35,15 @@ const toggleFilters = (filter) => pokeStore.toggleFilters(filter);
 <style scoped lang="scss">
   .filter {
     background-color: #F9F9F9;
-    width: calc(100% - 2rem);
+    width: 100%;
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 1rem;
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     z-index: 1000;
 
@@ -51,15 +53,17 @@ const toggleFilters = (filter) => pokeStore.toggleFilters(filter);
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-      width: 275px;
+      flex: 1;
+      max-width: 275px;
       height: 44px;
       border: none;
       border-radius: 60px;
       color: #FFFFFF;
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     &__all {

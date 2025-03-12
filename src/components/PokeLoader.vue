@@ -1,6 +1,6 @@
 <template>
   <div class="loader">
-    <img class="loader__pikachu" src="https://i.gifer.com/2iiJ.gif" alt="Loader Pikachu running">
+    <img class="loader__pikachu" src="/Pika-running.gif" alt="Loader Pikachu running">
     <img class="loader__pokeball" src="/Loader.svg" alt="Loader pokeball icon">
   </div>
 </template>

@@ -19,6 +19,7 @@ const getPokemonsInfo = async () => {
   <div class="home" v-if="!loading">
     <div>
       <img class="home__image" src="/Pikachu_Welcome.svg" alt="Image of Pikachu greeting" loading="lazy"/>
+      <div class="home__image__border"></div>
     </div>
     <h1 class="home__title">Welcome to Pokédex</h1>
     <p class="home__description">The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.</p>
@@ -43,12 +44,23 @@ const getPokemonsInfo = async () => {
     width: 100%;
     max-width: 325px;
     height: auto;
+    position: relative;
+    z-index: 1000;
+    bottom: 7px;
+  }
+
+  &__image__border {
+    width: 100%;
+    max-width: 210px;
+    height: 100%;
+    max-height: 210px;
     border: #333333 solid 2px;
     background-color: #F22539;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    bottom:43%;
+    left: 47%;
+    transform: translate(-50%, -50%);
   }
 
   &__title {
