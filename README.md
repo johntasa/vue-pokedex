@@ -7,6 +7,9 @@
 - **Pinia (Store)**
 - **Vue Router**
 - **Jest (Unit Tests)** 
+- **Vercel (Deployment)**
+
+Deployed at: https://vue-pokedex-filter.vercel.app/
 
 ### Version
 
